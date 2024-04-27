@@ -54,4 +54,31 @@ describe('GameField', () => {
       ).toHaveLength(1)
     }
   })
+
+  it(`should have the minimum classes for correct rendering the game field`, () => {
+
+    const wrapper = mount(GameField, {
+      global: {
+        plugins: [createTestingPinia({ stubActions: false })]
+      }
+    })
+    expect(wrapper.find("[data-testid='game-field']").classes()).toContain('w-full')
+    expect(wrapper.find("[data-testid='game-field']").classes()).toContain('h-full')
+    expect(wrapper.find("[data-testid='game-field']").classes()).toContain('relative')
+    expect(wrapper.find("[data-testid='game-field']").classes()).toContain('flex')
+    expect(wrapper.find("[data-testid='game-field']").classes()).toContain('flex-col')
+    expect(wrapper.find("[data-testid='game-field']").classes()).toContain('flex-nowrap')
+    expect(wrapper.find("[data-testid='game-field']").classes()).toContain('justify-evenly')
+    expect(wrapper.find("[data-testid='game-field']").classes()).toContain('items-stretch')
+  })
+
+  it(`should contain a hr tag`, () => {
+    const wrapper = mount(GameField, {
+      global: {
+        plugins: [createTestingPinia({ stubActions: false })]
+      }
+    })
+    expect(wrapper.find("[data-testid='game-field']").find('hr').exists()).toEqual(true)
+    
+  })
 })

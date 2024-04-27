@@ -1,12 +1,20 @@
 export enum ZoneComponents {
-    discard,
-    deck,
-    play,
+  discard,
+  deck,
+  play
+}
+
+type ZoneColors = 'red' | 'yellow' | 'blue' | 'green' | 'green'
+
+interface IZoneStyle {
+  color: ZoneColors
+  padding: string
 }
 
 export interface IZone {
-    type: string,
-    components: {
-       [ key in ZoneComponents]?: boolean
-    }
+  type: string
+  style: Partial<IZoneStyle>
+  components: {
+    [key in ZoneComponents]?: boolean
+  }
 }

@@ -10,7 +10,7 @@ const buttonClicked = () => {
 
 <template>
   <button
-    class="bg-transparent py-2 px-4 font-semibold border rounded border-red-500 hover:border-transparent hover:dark:border-white text-white hover:bg-red-500 hover:text-white dark:hover:text-black"
+    class="bg-black py-2 px-4 font-semibold border rounded border-red-500 hover:border-transparent hover:dark:border-white text-white hover:bg-red-500 hover:text-white dark:hover:text-black"
     @click="buttonClicked"
   >
     {{ msg }}

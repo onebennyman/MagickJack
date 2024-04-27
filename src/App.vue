@@ -11,16 +11,14 @@ const store = useGameStateStore()
 store.gameInstance.firstLoad()
 </script>
 <template>
-  <div>
     <div
-      class="logo p-5 rounded"
+      class="logo p-5 rounded bg-white dark:bg-black"
       :class="[store.gameInstance.progress.inProgress ? 'active' : '', theme]"
     >
       <h1>MagickJack</h1>
       <MainMenu />
     </div>
     <GameField />
-  </div>
 </template>
 
 <style scoped>

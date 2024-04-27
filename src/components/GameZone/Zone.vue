@@ -8,7 +8,7 @@ defineProps<{ zone: IZone }>()
 </script>
 
 <template>
-  <div :data-testid="`${zone.type}-zone`">
+  <div :data-testid="`${zone.type}-zone`" class="border-black rounded border-dashed relative grow" :class="[`bg-${zone.style.color}-800`]">
         <DiscardZone v-if="zone.components[ZoneComponents.discard]"  />
         <DeckZone v-if="zone.components[ZoneComponents.deck]"  />
         <PlayZone v-if="zone.components[ZoneComponents.play]"  />

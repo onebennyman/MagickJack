@@ -1,7 +1,8 @@
 import { mount } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
 import Zone from '../../src/components/GameZone/Zone.vue'
-import { ZoneComponents } from '../../src/components/GameZone/interface'
+import { IZone,  ZoneComponents } from '../../src/components/GameZone/interface'
+
 
 describe('Zone', () => {
   describe('Zone component rendering', () => {
@@ -16,8 +17,12 @@ describe('Zone', () => {
     `(
       '$zoneTestId should render: $expected  when declared: $zoneDeclared',
       ({ zoneTestId, zoneDeclared, expected }) => {
-        const zone = {
+        const zone: IZone = {
             type: 'test',
+            style: {
+              color: "blue",
+              padding: "1px"
+            },
             components: {
               [ZoneComponents[zoneTestId]]: zoneDeclared
             }
@@ -35,5 +40,26 @@ describe('Zone', () => {
         ).toEqual(expected)
       }
     )
+  })
+
+  it("should have the required classes", () => {
+    
+
+  const type = "test";
+
+  const wrapper = mount(Zone, {
+    props: {
+      zone: {
+        type,
+        style: {},
+        components: {}
+      }
+    }
+  })
+
+  expect(
+    wrapper.find(`[data-testid='${type}-zone']`).classes()
+  ).toContain("grow")
+
   })
 })
