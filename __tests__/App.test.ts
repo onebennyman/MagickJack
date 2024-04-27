@@ -13,6 +13,16 @@ describe('When the App loads', () => {
     })
     expect(gameInstance.progress.init).toEqual(true)
   })
+  it('should hide the game field until inProgress is true', () => {
+    const wrapper = mount(App, {
+      global: {
+        plugins: [createTestingPinia({ stubActions: false })]
+      }
+    })
+    expect(wrapper.find("[data-testid='game-field']").classes()).toContain(
+      'hidden'
+    )
+  })
 })
 
 describe('When the user wants to start the game', () => {
@@ -37,5 +47,22 @@ describe('When the user wants to start the game', () => {
     expect(wrapper.find("[data-testid='main-menu']").classes()).toContain(
       'hidden'
     )
+  })
+})
+
+describe('When the game is inProgress status', () => {
+
+  beforeEach(() => {
+    gameInstance.reset()
+    gameInstance.progress.inProgress = true;
+  })
+
+  it('should load the game field', () => {
+    const wrapper = mount(App, {
+      global: {
+        plugins: [createTestingPinia({ stubActions: false })]
+      }
+    })
+    expect(wrapper.find("[data-testid='game-field']").exists()).toEqual(true)
   })
 })

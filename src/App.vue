@@ -1,21 +1,26 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import MainMenu from "./components/Menu/MainMenu.vue";
-import Conf from "./conf"
+import { ref } from 'vue'
+import MainMenu from './components/Menu/MainMenu.vue'
+import Conf from './conf'
 import { useGameStateStore } from './store/GameState'
+import GameField from './components/GameField/GameField.vue'
 
 const theme = ref(Conf.theme.dark)
 
 const store = useGameStateStore()
 store.gameInstance.firstLoad()
-
 </script>
 <template>
-  <div class="logo p-5 rounded" :class="[store.gameInstance.progress.inProgress ? 'active' : '' , theme]">
-    <h1>MagickJack</h1>
-    <MainMenu />
+  <div>
+    <div
+      class="logo p-5 rounded"
+      :class="[store.gameInstance.progress.inProgress ? 'active' : '', theme]"
+    >
+      <h1>MagickJack</h1>
+      <MainMenu />
+    </div>
+    <GameField />
   </div>
-
 </template>
 
 <style scoped>
@@ -29,14 +34,12 @@ store.gameInstance.firstLoad()
 }
 
 .logo.active {
-  position:absolute;
-  top:0;
-  left:0;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .logo.active:hover {
   filter: drop-shadow(0 0 2em transparent);
 }
-
-
 </style>
