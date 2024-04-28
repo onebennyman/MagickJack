@@ -1,8 +1,21 @@
+import { PawnController } from "../PawnController/PawnController";
 import Progress from "./mods/_Progress";
 
 class _GameInstance {
     private static instance: _GameInstance | null = null;
     private _progress: Progress = new Progress();
+
+    private _playerController: PawnController = new PawnController();
+    private _enemyController: PawnController = new PawnController();
+
+
+    public get player() {
+        return this._playerController
+    }
+
+    public get enemy() {
+        return this._enemyController
+    }
 
     static getInstance(): _GameInstance {
         if (!_GameInstance.instance) {
@@ -25,17 +38,18 @@ class _GameInstance {
     }
 
     public firstStart(): boolean {
-        this.progress.inProgress= true;
-        
+        this.progress.inProgress = true;
         return this.progress.inProgress;
     }
 
-    private constructor() {}
+
+    private constructor() { }
 
 
     public get progress(): Progress {
         return this._progress;
     }
+
 }
 
 

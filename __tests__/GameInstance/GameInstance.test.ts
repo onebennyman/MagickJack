@@ -1,4 +1,4 @@
-import GameInstance from '../../src/components/GameInstance/_GameInstance'
+import GameInstance from '../../src/components/GameInstance/GameInstance'
 
 describe('firstLoad()', () => {
   beforeEach(() => {

@@ -3,17 +3,18 @@ import { IStyle } from "../GameField/interface";
 export enum ZoneComponents {
   discard,
   deck,
-  play
+  play,
+  controls
 }
 
 export interface IPosition {
   x: {
-      ref: 'left' | 'right';
-      value?: Number | string;
+    ref: 'left' | 'right';
+    value?: Number | string;
   },
   y: {
-      ref: 'top' | 'bottom';
-      value?: Number | string;
+    ref: 'top' | 'bottom';
+    value?: Number | string;
   }
 }
 

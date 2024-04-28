@@ -2,6 +2,8 @@ import { mount } from '@vue/test-utils'
 import Zone from '../../src/components/GameZone/Zone.vue'
 import { ZoneComponents } from '../../src/components/GameZone/interface'
 import { IField } from '../../src/components/GameField/interface'
+import { createTestingPinia } from '@pinia/testing'
+import { PawnController } from '../../src/components/PawnController/PawnController'
 
 describe('Zone', () => {
   describe('Zone component rendering', () => {
@@ -24,14 +26,20 @@ describe('Zone', () => {
           },
           components: {
             [ZoneComponents[zoneTestId]]: zoneDeclared
-          }
+          },
+
+          controller: new PawnController()
+
         }
         const zoneTestIdString = `[data-testid='${zoneTestId}-zone']`
 
         const wrapper = mount(Zone, {
           props: {
             field
-          }
+          },
+          global: {
+            plugins: [createTestingPinia({ stubActions: false })]
+          },
         })
 
         expect(wrapper.find(zoneTestIdString).exists()).toEqual(expected)
@@ -46,12 +54,16 @@ describe('Zone', () => {
     const field: IField = {
       type,
       style: {},
-      components: {}
+      components: {},
+      controller: new PawnController()
     }
 
     const wrapper = mount(Zone, {
       props: {
         field
+      },
+      global: {
+        plugins: [createTestingPinia({ stubActions: false })]
       }
     })
 

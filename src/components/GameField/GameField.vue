@@ -2,6 +2,7 @@
 import { useGameStateStore } from '../../store/GameState'
 import Zone from '../GameZone/Zone.vue'
 import { ZoneComponents } from '../GameZone/interface'
+import { PawnController } from '../PawnController/PawnController'
 import { IField } from './interface'
 
 const store = useGameStateStore()
@@ -15,8 +16,10 @@ const playerField: IField = {
   components: {
     [ZoneComponents.discard]: true,
     [ZoneComponents.deck]: true,
-    [ZoneComponents.play]: true
-  }
+    [ZoneComponents.play]: true,
+    [ZoneComponents.controls]: true
+  },
+  controller: new PawnController()
 }
 
 const enemyField: IField = {
@@ -29,7 +32,8 @@ const enemyField: IField = {
     [ZoneComponents.discard]: true,
     [ZoneComponents.deck]: true,
     [ZoneComponents.play]: true
-  }
+  },
+  controller: new PawnController()
 }
 </script>
 

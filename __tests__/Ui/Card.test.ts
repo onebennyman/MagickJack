@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils'
 import Card from '../../src/components/Ui/Card.vue'
 import { ICard } from '../../src/components/Ui/interface'
+import { Card as _Card } from "../../src/components/Card/Card"
 
 describe('Card', () => {
   it('should render', () => {
@@ -47,5 +48,45 @@ describe('Card', () => {
     classList.forEach(requiredClass => {
       expect(wrapperClasses).toContain(requiredClass)
     })
+  })
+
+  it("should set the information of the card instanced for rendering", () => {
+    const suit = 'Diamonds';
+    const value = "A"
+    const card = new _Card({ suit, value })
+
+    const wrapper = mount(Card, {
+      props: {
+        card
+      }
+    })
+    expect((wrapper.vm as any).c.title).toBe(value)
+    expect((wrapper.vm as any).c.subTitle).toBe(suit)
+  })
+
+  it("should render the information on the right direction, first value then suit", () => {
+    const suit = 'Diamonds';
+    const value = "A"
+    const card = new _Card({ suit, value })
+
+    const wrapper = mount(Card, {
+      props: {
+        card
+      }
+    })
+    expect(wrapper.text()).toBe(value + suit)
+  })
+
+  it("should set the card information empty when the card status is undefined (not yet set)", () => {
+    const card = new _Card()
+
+    const wrapper = mount(Card, {
+      props: {
+        card
+      }
+    })
+    expect((wrapper.vm as any).c.title).toBe("")
+    expect((wrapper.vm as any).c.subTitle).toBe("")
+    expect(wrapper.text()).toBe("")
   })
 })

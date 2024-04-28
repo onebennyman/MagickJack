@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import App from '../src/App.vue'
-import GameInstance from '../src/components/GameInstance/_GameInstance'
+import GameInstance from '../src/components/GameInstance/GameInstance'
 import { createTestingPinia } from '@pinia/testing'
 const gameInstance = GameInstance
 

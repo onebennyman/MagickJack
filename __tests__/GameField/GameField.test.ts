@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
-import GameInstance from '../../src/components/GameInstance/_GameInstance'
+import GameInstance from '../../src/components/GameInstance/GameInstance'
 import GameField from '../../src/components/GameField/GameField.vue'
 import { ZoneComponents } from '../../src/components/GameZone/interface'
 
@@ -79,6 +79,6 @@ describe('GameField', () => {
       }
     })
     expect(wrapper.find("[data-testid='game-field']").find('hr').exists()).toEqual(true)
-    
+
   })
 })
