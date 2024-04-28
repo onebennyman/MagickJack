@@ -11,14 +11,14 @@ const store = useGameStateStore()
 store.gameInstance.firstLoad()
 </script>
 <template>
-    <div
-      class="logo p-5 rounded bg-white dark:bg-black"
-      :class="[store.gameInstance.progress.inProgress ? 'active' : '', theme]"
-    >
-      <h1>MagickJack</h1>
-      <MainMenu />
-    </div>
-    <GameField />
+  <div
+    class="logo p-5 rounded bg-white dark:bg-black"
+    :class="[store.gameInstance.progress.inProgress ? 'active' : '', theme]"
+  >
+    <h1>MagickJack</h1>
+    <MainMenu />
+  </div>
+  <GameField />
 </template>
 
 <style scoped>

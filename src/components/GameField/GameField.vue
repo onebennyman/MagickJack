@@ -1,37 +1,34 @@
 <script setup lang="ts">
 import { useGameStateStore } from '../../store/GameState'
 import Zone from '../GameZone/Zone.vue'
-import {IZone, ZoneComponents} from "../GameZone/interface";
+import { ZoneComponents } from '../GameZone/interface'
+import { IField } from './interface'
 
 const store = useGameStateStore()
 
-const playerZone: IZone= {
+const playerField: IField = {
   type: 'player',
   style: {
-    color: "red",
-    padding: "1"
-
-  },
-  components: 
-  {
-    [ZoneComponents.discard]: true,
-    [ZoneComponents.deck]: true,
-    [ZoneComponents.play]: true,
-  }
-}
-
-const enemyZone: IZone = {
-  type: 'enemy',
-  style: {
-    color: "red",
-    padding: "1"
-
+    color: 'green',
+    padding: '1'
   },
   components: {
     [ZoneComponents.discard]: true,
     [ZoneComponents.deck]: true,
-    [ZoneComponents.play]: true,
+    [ZoneComponents.play]: true
+  }
+}
 
+const enemyField: IField = {
+  type: 'enemy',
+  style: {
+    color: 'red',
+    padding: '1'
+  },
+  components: {
+    [ZoneComponents.discard]: true,
+    [ZoneComponents.deck]: true,
+    [ZoneComponents.play]: true
   }
 }
 </script>
@@ -42,9 +39,9 @@ const enemyZone: IZone = {
     class="h-full w-full relative flex flex-col flex-nowrap justify-evenly items-stretch"
     :class="store.gameInstance.progress.inProgress ? 'show' : 'hidden'"
   >
-    <Zone :zone="enemyZone" />
-    <hr>
-    <Zone :zone="playerZone" />
+    <Zone :field="enemyField" />
+    <hr />
+    <Zone :field="playerField" />
   </div>
 </template>
 

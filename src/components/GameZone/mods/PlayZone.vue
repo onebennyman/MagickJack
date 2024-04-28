@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { IZone } from '../interface';
-    defineProps<{ zone?: Partial<IZone> }>()
+import { IZone } from '../interface'
+defineProps<{ zone?: Partial<IZone> }>()
 </script>
 
 <template>

@@ -1,11 +1,18 @@
 <script setup lang="ts">
-import { IZone } from '../interface';
-    defineProps<{ zone?: Partial<IZone> }>()
+import { IZone } from '../interface'
+import CardPile from '../../Ui/CardPile.vue'
+import { ICard } from '../../Ui/interface'
+
+defineProps<{ zone: Partial<IZone> }>()
+
+const card: ICard = {
+  msg: 'DISCARD'
+}
 </script>
 
 <template>
-  <div data-testid="discard-zone">
-    <h1>DISCARD</h1>
+  <div :data-testid="`${zone.type}-zone`">
+    <CardPile :position="zone.position" :card="card" />
   </div>
 </template>
 

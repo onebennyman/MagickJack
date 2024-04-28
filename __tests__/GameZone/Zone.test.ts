@@ -1,8 +1,7 @@
 import { mount } from '@vue/test-utils'
-import { createTestingPinia } from '@pinia/testing'
 import Zone from '../../src/components/GameZone/Zone.vue'
-import { IZone,  ZoneComponents } from '../../src/components/GameZone/interface'
-
+import { ZoneComponents } from '../../src/components/GameZone/interface'
+import { IField } from '../../src/components/GameField/interface'
 
 describe('Zone', () => {
   describe('Zone component rendering', () => {
@@ -10,56 +9,56 @@ describe('Zone', () => {
       zoneTestId                                | zoneDeclared | expected
       ${ZoneComponents[ZoneComponents.discard]} | ${true}      | ${true}
       ${ZoneComponents[ZoneComponents.discard]} | ${false}     | ${false}
-      ${ZoneComponents[ZoneComponents.deck]} | ${true}      | ${true}
-      ${ZoneComponents[ZoneComponents.deck]} | ${false}     | ${false}
-      ${ZoneComponents[ZoneComponents.play]} | ${true}      | ${true}
-      ${ZoneComponents[ZoneComponents.play]} | ${false}     | ${false}
+      ${ZoneComponents[ZoneComponents.deck]}    | ${true}      | ${true}
+      ${ZoneComponents[ZoneComponents.deck]}    | ${false}     | ${false}
+      ${ZoneComponents[ZoneComponents.play]}    | ${true}      | ${true}
+      ${ZoneComponents[ZoneComponents.play]}    | ${false}     | ${false}
     `(
       '$zoneTestId should render: $expected  when declared: $zoneDeclared',
       ({ zoneTestId, zoneDeclared, expected }) => {
-        const zone: IZone = {
-            type: 'test',
-            style: {
-              color: "blue",
-              padding: "1px"
-            },
-            components: {
-              [ZoneComponents[zoneTestId]]: zoneDeclared
-            }
+        const field: IField = {
+          type: 'player',
+          style: {
+            color: 'blue',
+            padding: '1px'
+          },
+          components: {
+            [ZoneComponents[zoneTestId]]: zoneDeclared
           }
-        const zoneTestIdString = `[data-testid='${zoneTestId}-zone']`;
+        }
+        const zoneTestIdString = `[data-testid='${zoneTestId}-zone']`
 
         const wrapper = mount(Zone, {
           props: {
-            zone
+            field
           }
         })
 
-        expect(
-          wrapper.find(zoneTestIdString).exists()
-        ).toEqual(expected)
+        expect(wrapper.find(zoneTestIdString).exists()).toEqual(expected)
       }
     )
   })
 
-  it("should have the required classes", () => {
-    
+  it('should have the required classes', () => {
+    const classList = ['grow', 'relative']
+    const type = "player"
 
-  const type = "test";
-
-  const wrapper = mount(Zone, {
-    props: {
-      zone: {
-        type,
-        style: {},
-        components: {}
-      }
+    const field: IField = {
+      type,
+      style: {},
+      components: {}
     }
-  })
 
-  expect(
-    wrapper.find(`[data-testid='${type}-zone']`).classes()
-  ).toContain("grow")
+    const wrapper = mount(Zone, {
+      props: {
+        field
+      }
+    })
 
+    const wrapperClasses = wrapper.find(`[data-testid="${type}-zone"]`).classes()
+
+    classList.forEach(requiredClass => {
+      expect(wrapperClasses).toContain(requiredClass)
+    })
   })
 })

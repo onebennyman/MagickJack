@@ -1,20 +1,19 @@
 <script setup lang="ts">
-import { IZone } from '../interface';
-    defineProps<{ zone?: Partial<IZone> }>()
+import { IZone } from '../interface'
+import CardPile from '../../Ui/CardPile.vue'
+import { ICard } from '../../Ui/interface'
 
+defineProps<{ zone: Partial<IZone> }>()
+
+const card: ICard = {
+  msg: 'DECK'
+}
 </script>
 
 <template>
-    <div data-testid="deck-zone" class="carta rounded border-2 border-solid border-white bg-slate-500">
-        <h1 class="text-center text-black">DECK</h1>
-    </div>
+  <div :data-testid="`${zone.type}-zone`">
+    <CardPile :position="zone.position" :card="card" />
+  </div>
 </template>
 
-<style scoped>
-.carta {
-  height: 16vw;
-  width: 10vw;
-  aspect-ratio: 3 / 4;
-  border-radius: 10px;
-}
-</style>
+<style scoped></style>

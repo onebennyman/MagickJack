@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import Button from "../../Ui/Button.vue";
-import { useGameStateStore } from '../../../store/GameState';
+import Button from '../../Ui/Button.vue'
+import { useGameStateStore } from '../../../store/GameState'
 
 const store = useGameStateStore()
 
 const startGame = () => {
   store.gameInstance.firstStart()
 }
-
 </script>
 
 <template>
-<Button msg="PLAY" @buttonClicked="startGame" />
+  <Button msg="PLAY" @buttonClicked="startGame" />
 </template>
 
 <style scoped>

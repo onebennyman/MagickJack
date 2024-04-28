@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import Button from '../../src/components/Ui/Button.vue'
 
-describe('MyButton', () => {
+describe('Button', () => {
   it('should render the button with the provided message', () => {
     const msg = 'Click me'
     const wrapper = mount(Button, {

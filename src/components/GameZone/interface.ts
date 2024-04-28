@@ -1,20 +1,25 @@
+import { IStyle } from "../GameField/interface";
+
 export enum ZoneComponents {
   discard,
   deck,
   play
 }
 
-type ZoneColors = 'red' | 'yellow' | 'blue' | 'green' | 'green'
-
-interface IZoneStyle {
-  color: ZoneColors
-  padding: string
+export interface IPosition {
+  x: {
+      ref: 'left' | 'right';
+      value?: Number | string;
+  },
+  y: {
+      ref: 'top' | 'bottom';
+      value?: Number | string;
+  }
 }
 
+
 export interface IZone {
-  type: string
-  style: Partial<IZoneStyle>
-  components: {
-    [key in ZoneComponents]?: boolean
-  }
+  type: string;
+  style: Partial<IStyle>;
+  position: Partial<IPosition>;
 }
